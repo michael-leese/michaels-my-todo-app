@@ -14,7 +14,8 @@ from pathlib import Path
 import os
 import dj_database_url
 
-# from .env import DATABASE_URL
+if not os.environ.get("PROD"):
+    from .env import DATABASE_URL, SECRET_KEY
 
 
 
@@ -26,7 +27,10 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 # See https://docs.djangoproject.com/en/3.2/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'django-insecure-cec!86#0b=9k!3kegp)qolr*c+of)va+u(drwl6fu&l*s%cpjx'
+if not os.environ.get("PROD"):
+    SECRET_KEY = SECRET_KEY
+else:
+    SECRET_KEY = os.environ.get('SECRET_KEY')
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -89,9 +93,14 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 #     }
 # }
 
-DATABASES = {
-    'default': dj_database_url.parse("postgres://nfnsetjcoltzef:8654b32e5a1d56d55b8b5bed2917fddcefca50aa20f071badd1e2d91990cfe94@ec2-54-160-109-68.compute-1.amazonaws.com:5432/d8sej5cgap27na")
-}
+if not os.environ.get("PROD"):
+    DATABASES = {
+        'default': dj_database_url.parse(DATABASE_URL)
+    }
+else:
+    DATABASES = {
+        'default': dj_database_url.parse(os.environ.get("DATABASE_URL"))
+    }
 
 
 # Password validation
