@@ -14,7 +14,7 @@ from pathlib import Path
 import os
 import dj_database_url
 
-from .env import DATABASE_URL
+# from .env import DATABASE_URL
 
 
 
