@@ -1,0 +1,6 @@
+__pycache__/
+env.py
+scripts.txt
+.venv/
+.vscode/
+*.sqlite3

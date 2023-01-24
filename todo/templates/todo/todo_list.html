@@ -1,0 +1,45 @@
+{% extends 'base.html' %} 
+
+{% block title %} {{ name }} Todo {% endblock %} 
+
+{% block content %}
+<h1>My Todo List</h1>
+<p>Below are a list of our items!</p>
+<table>
+  <tr>
+    <td>Item Name</td>
+    <td>Done status</td>
+  </tr>
+  {% for item in items %}
+  <tr>
+    {% if item.done %}
+    <td><strike>{{ item.name }}</strike></td>
+    <td><strike>{{ item.done }}</strike></td>
+    {% else %}
+    <td>{{ item.name }}</td>
+    <td>{{ item.done }}</td>
+    {% endif %}
+    <td>
+      <a href="/edit/{{ item.id }}">
+        <button>Edit</button>
+      </a>
+    </td>
+    <td>
+        <a href="/toggle/{{ item.id }}">
+          <button>Toggle</button>
+        </a>
+      </td>
+      <td>
+        <a href="/delete/{{ item.id }}">
+          <button>Delete</button>
+        </a>
+      </td>
+    {% empty %}
+    <td>You have nothing to do.</td>
+  </tr>
+  {% endfor %}
+</table>
+
+<a href="/add">Add an item</a>
+
+{% endblock %}
