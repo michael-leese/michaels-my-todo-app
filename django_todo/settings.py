@@ -90,7 +90,7 @@ WSGI_APPLICATION = 'django_todo.wsgi.application'
 # }
 
 DATABASES = {
-    'default': dj_database_url.parse(DATABASE_URL)
+    'default': dj_database_url.parse("postgres://nfnsetjcoltzef:8654b32e5a1d56d55b8b5bed2917fddcefca50aa20f071badd1e2d91990cfe94@ec2-54-160-109-68.compute-1.amazonaws.com:5432/d8sej5cgap27na")
 }
 
 
